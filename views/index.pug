@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-lg-6.sm-8.mx-auto.mt-3 
+        .card
+          .card-body.p-2
+            form(action="", method="post").d-flex
+              input.form-control.text-center(type="text",name="task",placeholder="Enter any Task to save")
+              input.btn.btn-success(type="submit",hidden)
+    .row 
+      .col-lg-6.sm-8.mx-auto(style="height:50vh;overflow-x:hidden;overflow-y:scrolltome;")
+        ul.list-group.mt-3
+          each x in todo
+            if x.status == 0
+              li.list-group-item.list-group-item-action.list-group-item-secondary
+                if x.status == 0
+                  span 
+                    del=x.task 
+                    a(href=`/remove/${x._id}`) 
+                      spam.float-end.badge.rounded-pill.bg-danger Remove
+                else 
+                  span=x.task
+                  a(href=`/close/${x._id}`) 
+                    spam.float-end.badge.rounded-pill.bg-warning Done
+            else 
+              li.list-group-item.list-group-item-action
+                if x.status == 0
+                  span 
+                    del=x.task 
+                    a(href=`/remove/${x._id}`) 
+                      spam.float-end.badge.rounded-pill.bg-danger Remove
+                else 
+                  span=x.task
+                  a(href=`/close/${x._id}`) 
+                    spam.float-end.badge.rounded-pill.bg-warning Done 
+      
